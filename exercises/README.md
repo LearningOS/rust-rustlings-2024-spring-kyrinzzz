@@ -26,9 +26,34 @@
 | clippy                 | §21.4               |
 | conversions            | n/a                 |
 
+>have done the orginal rustlings test before, try again and also get something to learn
+
 # Potholes
 ## variales
 ### varaibles5.rs
-- `shaldowing`: using `let`
+- `shadowing`: using `let`
 
+## primitive_types
+### primitive_types3.rs
+- shorthand to create an arry: `[elment; times]`
+### primitive_types4.rs
+- Ownership, borrow, ref: &
+- slice: [ .. ]
 
+## vector
+### vecs1.rs
+- macro: vec![elements... ]
+### vecs2.rs
+- two ways
+    - direct: use `*` 
+    - map: 
+- used to do in the `*` way, now prefer the `map` way
+
+## move_semantics
+### move_semantics1.rs
+- ownership, borrow: the new va. takes the ownership from the old, the old can not be accessible
+- mutable
+### move_semantics2.rs
+- clone()
+- mutally borrow a reference to its argument: the next exec
+### 
