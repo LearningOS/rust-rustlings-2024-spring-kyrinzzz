@@ -25,3 +25,10 @@
 | macros                 | §19.6               |
 | clippy                 | §21.4               |
 | conversions            | n/a                 |
+
+# Potholes
+## variales
+### varaibles5.rs
+- `shaldowing`: using `let`
+
+
