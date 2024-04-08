@@ -62,3 +62,39 @@
 ## struct 
 ### structs3.rs
 - `self`
+
+## enums
+### enums3.rs
+- `match`
+    ``` Rust
+    match expr1 {
+        type1 => { expr2 },
+        type2(var) => { expr3 },
+        _ => {}
+    }
+
+    ```
+- match allows us to compare a value to a series of patterns and execute the code based on the matching pattern
+    - A pattern can consist of literal quantities, variables, wildcards, and many other things
+    - bind partial values of matching patterns
+- the return value of one branch is the return value of the whole match expection 
+
+## strings
+### string1.rs
+- lifetime
+- to_string()
+- From
+### strings3.rs
+- RTFD(RTFM): Read the fxxxx document(mannul)
+- STFW
+### string4.rs
+- std
+
+## modules
+### modules1.rs
+- private default
+- `pub`
+### modules2.rs
+- `use xx as xxx`
+
+
