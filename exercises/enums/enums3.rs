@@ -9,6 +9,7 @@
 
 enum Message {
     // TODO: implement the message variant types based on their usage below
+    
 }
 
 struct Point {
@@ -43,6 +44,9 @@ impl State {
         // variants
         // Remember: When passing a tuple as a function argument, you'll need
         // extra parentheses: fn function((t, u, p, l, e))
+        match message {
+
+        }
     }
 }
 

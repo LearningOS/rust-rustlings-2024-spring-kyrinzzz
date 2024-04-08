@@ -56,4 +56,9 @@
 ### move_semantics2.rs
 - clone()
 - mutally borrow a reference to its argument: the next exec
-### 
+### move_semantics6.rs
+- ownership
+
+## struct 
+### structs3.rs
+- `self`
