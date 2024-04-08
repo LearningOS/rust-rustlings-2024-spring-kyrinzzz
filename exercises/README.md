@@ -42,6 +42,7 @@
 
 ## vector
 ### vecs1.rs
+- Vec::new()
 - macro: vec![elements... ]
 ### vecs2.rs
 - two ways
@@ -96,5 +97,50 @@
 - `pub`
 ### modules2.rs
 - `use xx as xxx`
+### modules3.rs
+- `use xx :: {yy, zz}`
 
+## HashMap
+### hashmap1.rs
+- <key, value>
+- Hash::new()
+- insert()
+### hashmap2.rs
+- `entry()` and `or_insert()`
+### hashmap3.rs
+- well, read the answer I wrote last time
+- have ideas, but stuck on &mut T 
 
+## quiz2.rs
+- stuck on modules and strings for a while
+
+## Options
+### options1.rs
+- Option<T>, Some(), None
+- unwrap() or match
+- read the answer of match way
+### options2.rs
+- `if let` statement and `while let` statement
+- read the answer: think in the reverse way, .unwrap() -- Some()
+### options3.rs
+- >Bind by reference during pattern matching. 
+  > ref annotates pattern bindings to make them borrow rather than move. 
+  > It is not a part of the pattern as far as matching is concerned: it does not affect whether a value is matched, 
+  > only how it is matched.
+
+## error_handling
+### error1.rs
+- Result<T, E>
+  - Ok(T)
+  - Err(E)
+### error2.rs
+- ? -- match
+- >If the value of Result is OK, the expression will return the value in OK and the program will continue. 
+If the value is Err, Err is used as the return value for the entire function, 
+as if the return keyword were used, so that the error value is propagated to the caller.
+### error3.rs
+- the ? is valid only in function that -> Result<T, E>
+- in main function, use `()` to present nothing needed
+### error4.rs
+- kind of read the answer
+### 
