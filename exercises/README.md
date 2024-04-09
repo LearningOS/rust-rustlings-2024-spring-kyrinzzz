@@ -29,18 +29,18 @@
 >have done the orginal rustlings test before, try again and also get something to learn
 
 # Potholes
-## variales
+## 0 variales
 ### varaibles5.rs
 - `shadowing`: using `let`
 
-## primitive_types
+## 1 primitive_types
 ### primitive_types3.rs
 - shorthand to create an arry: `[elment; times]`
 ### primitive_types4.rs
 - Ownership, borrow, ref: &
 - slice: [ .. ]
 
-## vector
+## 2 vector
 ### vecs1.rs
 - Vec::new()
 - macro: vec![elements... ]
@@ -50,7 +50,7 @@
     - map: 
 - used to do in the `*` way, now prefer the `map` way
 
-## move_semantics
+## 3 move_semantics
 ### move_semantics1.rs
 - ownership, borrow: the new va. takes the ownership from the old, the old can not be accessible
 - mutable
@@ -60,11 +60,11 @@
 ### move_semantics6.rs
 - ownership
 
-## struct 
+## 4 struct 
 ### structs3.rs
 - `self`
 
-## enums
+## 5 enums
 ### enums3.rs
 - `match`
     ``` Rust
@@ -80,7 +80,7 @@
     - bind partial values of matching patterns
 - the return value of one branch is the return value of the whole match expection 
 
-## strings
+## 6 strings
 ### string1.rs
 - lifetime
 - to_string()
@@ -91,7 +91,7 @@
 ### string4.rs
 - std
 
-## modules
+## 7 modules
 ### modules1.rs
 - private default
 - `pub`
@@ -100,7 +100,7 @@
 ### modules3.rs
 - `use xx :: {yy, zz}`
 
-## HashMap
+## 8 HashMap
 ### hashmap1.rs
 - <key, value>
 - Hash::new()
@@ -114,7 +114,7 @@
 ## quiz2.rs
 - stuck on modules and strings for a while
 
-## Options
+## 9 Options
 ### options1.rs
 - Option<T>, Some(), None
 - unwrap() or match
@@ -128,7 +128,7 @@
   > It is not a part of the pattern as far as matching is concerned: it does not affect whether a value is matched, 
   > only how it is matched.
 
-## error_handling
+## 10 error_handling
 ### error1.rs
 - Result<T, E>
   - Ok(T)
@@ -143,4 +143,54 @@ as if the return keyword were used, so that the error value is propagated to the
 - in main function, use `()` to present nothing needed
 ### error4.rs
 - kind of read the answer
-### 
+### error5.rs
+- trait 
+- Box\<T\>: A pointer type that uniquely owns a heap allocation of type T.
+- dyn
+### error6.rs
+- stuck, read the answer; .map_err()
+
+## 11 generics
+### generics2.rs
+- `<T>`
+    - functions: fn func_name<T>(arg: T) -> T
+    - structs: struct StructName<T>
+    - traits: trait TraitName<T>
+    - impl<T> StructName<T> { ... }
+
+## 12 traits
+### traits1.rs
+- trait: A trait defines a set of behaviors that can be shared, and once the train is implemented, you can use that set of behaviors.
+  - similar to interface
+- trait trait_name { ... }
+  - impl trait_name for StructName { ... }
+### traits4.rs
+- traits as parameters
+### traits5.rs
+- multiple traits: impl Trait1 + Trait2 + Trait3 for StructName { ... }
+
+## quiz3.rs
+- stuck, but according to the compiler info, fix it
+
+## 13 lifetimes
+### lifetimes1.rs
+- lifetime: When returning a reference from a function,the lifetime parameter for the return type needs to match the lifetime parameter for one of the parameters
+  - follow the compiler
+  - 'a: fn funcName<'a>(x : 'a i32) -> &'a str
+### lifetimes2.rs
+- same mark, same lifetime
+- paths:
+  - make y live longer
+  - make println! inner
+### lifetimes3.rs
+- lifetime in struct: struct StructName<\'a> { field: \'a type1 } 
+
+## 14 tests
+### tests1.rs
+- assert!(condition, "{}", message)
+### tests4.rs
+- attribute `should_panic`
+
+## 15 iterators
+### iterators1.rs
+- iter(), next ()
