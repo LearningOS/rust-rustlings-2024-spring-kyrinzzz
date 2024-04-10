@@ -313,3 +313,40 @@ The term `macro` refers to a family of features in Rust:
   - export symbol to the linking environment, e.g. `extern "C" fn funcName()`
 - mangle symbol name: `#\[no_mangle\]
 - confused, copilot; the attributes should be applied properly
+
+## 22 algorithm
+### algorithm1.rs -- merge linked list
+- got stuck for a long time, not the fault of not understanding linked list, but those features
+- `impl<T: PartialOrd + Clone>`: a trait bound that specifies requirements for the type T.
+### algorithm2.rs -- reverse double linked list
+- a little confused, but solved
+### algorithm3.rs -- sort, bubble sort
+- copilot for `the trait Ord`
+### algorithm4.rs -- bst, the binary search tree
+- glad it's not avl tree
+- recursion
+### algorithm5.rs -- bfs, adjacency matrix
+- `VecDeque`, `bfs`, `visited`,  `Adjacency matrix`
+- familiar with this one, with `VecDeque`, solved quickly
+### algorithm6.rs -- dfs, adjacency matrix
+- smooth
+### algorithm7.rs -- stack, vec
+- copilot when the match arm
+### algorithm8.rs -- impl stack with queues
+- with one queue
+  - push: just push 
+  - pop: pop the pre and push them again, loop queue.size - 1 times
+- with two queues -- this way this time
+  - make sure that the new element is in the front of the queue, and one queue is empty
+  - use one empty queue q1 to store the new, move the rest of elements from the other queue q2 to the cur queue q1, 
+  - then use the other queue q2 to store the next new element, move the rest of elements from the cur queue q1 to the other queue q2,
+### algorithm9.rs -- binary heap
+- although aware of that heap keeps the smallest or the biggest element at the top, often used in the k-th min or max problem
+- not so familiar with this one, stfw, gpt, copilot
+- use vec to implement heap: the parent's index `(i - 1) / 2`, the left child's index `2 * i + 1`, the right child's index `2 * i + 2`, start from 0
+- `add`: after `push`, use `heapify_up`
+- `heapify_up`: continuous swap until the parent is smaller(or greater, depending on the heap type) than the child
+- `smallest_child_idx`: the smallest child idx
+- `next`: iterate to get the smallest element
+### algorithm10.rs -- graph: adjacency table, undirected graph
+- copilot a little for programming quickly, like finding elem in hashmap, trying to insert new elem into hashmap

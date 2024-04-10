@@ -1,6 +1,6 @@
 /*
 	graph
-	This problem requires you to implement a basic graph functio
+	This problem requires you to implement a basic graph function
 */
 // I AM NOT DONE
 
@@ -30,6 +30,14 @@ impl Graph for UndirectedGraph {
     }
     fn add_edge(&mut self, edge: (&str, &str, i32)) {
         //TODO
+        self.adjacency_table_mutable()
+            .entry(edge.0.to_string()) // find the node1
+            .or_insert(Vec::new())     // if not edge yet
+            .push((edge.1.to_string(), edge.2)); // add the edge node1-node2
+        self.adjacency_table_mutable()
+            .entry(edge.1.to_string()) // find the node2
+            .or_insert(Vec::new())     // if not edge yet
+            .push((edge.0.to_string(), edge.2)); // add the edge node2-node1
     }
 }
 pub trait Graph {

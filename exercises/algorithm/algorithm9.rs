@@ -2,7 +2,6 @@
 	heap
 	This question requires you to implement a binary heap function
 */
-// I AM NOT DONE
 
 use std::cmp::Ord;
 use std::default::Default;
@@ -13,7 +12,7 @@ where
 {
     count: usize,
     items: Vec<T>,
-    comparator: fn(&T, &T) -> bool,
+    comparator: fn(&T, &T) -> bool, // to define the heap order
 }
 
 impl<T> Heap<T>
@@ -38,6 +37,15 @@ where
 
     pub fn add(&mut self, value: T) {
         //TODO
+        self.count += 1;
+        self.items.push(value);
+        self.heapify_up(self.count, self.comparator);
+    }
+    fn heapify_up(&mut self, mut idx: usize, comparator: fn(&T, &T) -> bool) {
+        while idx > 1 && comparator(&self.items[idx], &self.items[self.parent_idx(idx)]) {
+            self.items.swap(idx, self.parent_idx(idx));
+            idx = self.parent_idx(idx);
+        }
     }
 
     fn parent_idx(&self, idx: usize) -> usize {
@@ -58,7 +66,14 @@ where
 
     fn smallest_child_idx(&self, idx: usize) -> usize {
         //TODO
-		0
+		let left = self.left_child_idx(idx);
+        let right = self.right_child_idx(idx);
+        // valid check and compare
+        if right > self.count || (self.comparator)(&self.items[left], &self.items[right]) {
+            left
+        } else {
+            right
+        }
     }
 }
 
@@ -85,7 +100,7 @@ where
 
     fn next(&mut self) -> Option<T> {
         //TODO
-		None
+        None
     }
 }
 

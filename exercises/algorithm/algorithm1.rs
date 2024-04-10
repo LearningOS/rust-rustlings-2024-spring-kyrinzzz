@@ -2,14 +2,14 @@
 	single linked list merge
 	This problem requires you to merge two ordered singly linked lists into one ordered singly linked list
 */
-// I AM NOT DONE
 
 use std::fmt::{self, Display, Formatter};
 use std::ptr::NonNull;
 use std::vec::*;
 
 #[derive(Debug)]
-struct Node<T> {
+struct Node<T>
+{
     val: T,
     next: Option<NonNull<Node<T>>>,
 }
@@ -29,13 +29,13 @@ struct LinkedList<T> {
     end: Option<NonNull<Node<T>>>,
 }
 
-impl<T> Default for LinkedList<T> {
+impl<T: PartialOrd + Clone> Default for LinkedList<T> {
     fn default() -> Self {
         Self::new()
     }
 }
 
-impl<T> LinkedList<T> {
+impl<T: PartialOrd + Clone> LinkedList<T> {
     pub fn new() -> Self {
         Self {
             length: 0,
@@ -69,37 +69,40 @@ impl<T> LinkedList<T> {
             },
         }
     }
-	pub fn merge(list_a:LinkedList<T>,list_b:LinkedList<T>) -> Self
+	pub fn merge(list_a:LinkedList<T>, list_b:LinkedList<T>) -> Self
+    where
+        T: Ord,
 	{
-        let list_a_ptr = list_a.start;
-        let list_b_ptr = list_b.start;
-        while list_a_ptr.is_some() && list_b_ptr.is_some() {
-            let a = list_a_ptr.unwrap();
-            let b = list_b_ptr.unwrap();
-            if a < b {
+        let mut list_a_start = list_a.start;
+        let mut list_b_start = list_b.start;
+        let mut list_c = LinkedList::new();
 
-                list_a_ptr = unsafe { (*a.as_ptr()).next };
+        while let (Some(node_a), Some(node_b)) = (list_a_start, list_b_start) {
+            let v1 = &unsafe { node_a.as_ref() } .val;
+            let v2 = &unsafe { node_b.as_ref() } .val;
+            if v1 < v2 {
+                list_c.add(v1.to_owned());
+                list_a_start = unsafe { node_a.as_ref() } .next;
             } else {
-                list_b_ptr = unsafe { (*b.as_ptr()).next };
+                list_c.add(v2.to_owned());
+                list_b_start = unsafe { node_b.as_ref() } .next;
             }
         }
-        while list_a_ptr.is_some() {
-            let a = list_a_ptr.unwrap();
-            list_a_ptr = unsafe { (*a.as_ptr()).next };
+
+        while let Some(node_a) = list_a_start {
+            list_c.add(unsafe { node_a.as_ref() } .val.to_owned());
+            list_a_start = unsafe { node_a.as_ref() } .next;
         }
-        while list_b_ptr.is_some() {
-            let b = list_b_ptr.unwrap();
-            list_b_ptr = unsafe { (*b.as_ptr()).next };
+        while let Some(node_b) = list_b_start {
+            list_c.add(unsafe { node_b.as_ref() } .val.to_owned());
+            list_b_start = unsafe { node_b.as_ref() } .next;
         }
-		Self {
-            length: 0,
-            start: None,
-            end: None,
-        }
-	}
+
+	    list_c
+    }
 }
 
-impl<T> Display for LinkedList<T>
+impl<T: PartialOrd + Clone> Display for LinkedList<T>
 where
     T: Display,
 {
@@ -111,7 +114,7 @@ where
     }
 }
 
-impl<T> Display for Node<T>
+impl<T: PartialOrd + Clone> Display for Node<T>
 where
     T: Display,
 {

@@ -3,7 +3,6 @@
 	This problem requires you to implement a basic interface for a binary tree
 */
 
-//I AM NOT DONE
 use std::cmp::Ordering;
 use std::fmt::Debug;
 
@@ -51,12 +50,44 @@ where
     // Insert a value into the BST
     fn insert(&mut self, value: T) {
         //TODO
+        if self.root.is_none() {
+            self.root = Some(Box::new(TreeNode::new(value)));
+            return;
+        }
+        match self.root.as_mut().unwrap().value.cmp(&value) {
+            Ordering::Equal => {}
+            Ordering::Less => {
+                if self.root.as_mut().unwrap().right.is_none() {
+                    self.root.as_mut().unwrap().right = Some(Box::new(TreeNode::new(value)));
+                    return;
+                }
+                self.root.as_mut().unwrap().right.as_mut().unwrap().insert(value);
+           }
+            Ordering::Greater => {
+                if self.root.as_mut().unwrap().left.is_none() {
+                    self.root.as_mut().unwrap().left = Some(Box::new(TreeNode::new(value)));
+                    return;
+                }
+                self.root.as_mut().unwrap().left.as_mut().unwrap().insert(value);
+            }
+       }
     }
 
     // Search for a value in the BST
     fn search(&self, value: T) -> bool {
         //TODO
-        true
+        if self.root.is_none() {
+            return false;
+        }
+        match self.root.as_ref().unwrap().value.cmp(&value) {
+            Ordering::Equal => return true,
+            Ordering::Less => {
+                self.root.as_ref().unwrap().right.as_ref().unwrap().search(value)
+            }
+            Ordering::Greater => {
+                self.root.as_ref().unwrap().left.as_ref().unwrap().search(value)
+            }
+        }
     }
 }
 
@@ -67,6 +98,46 @@ where
     // Insert a node into the tree
     fn insert(&mut self, value: T) {
         //TODO
+        match self.value.cmp(&value) {
+            Ordering::Equal => {}
+            Ordering::Less => {
+                if self.right.is_none() {
+                    self.right = Some(Box::new(TreeNode::new(value)));
+                    return;
+                }
+                self.right.as_mut().unwrap().insert(value);
+            }
+            Ordering::Greater => {
+                if self.left.is_none() {
+                    self.left = Some(Box::new(TreeNode::new(value)));
+                    return;
+                }
+                self.left.as_mut().unwrap().insert(value);
+            }
+        }
+    }
+
+    // Search for a value in the tree
+    fn search(&self, value: T) -> bool {
+        //TODO
+        // if self.right.is_none() && self.left.is_none() {
+        //     return false;
+        // }
+        match self.value.cmp(&value) {
+            Ordering::Equal => return true,
+            Ordering::Less => {
+                if self.right.is_none() {
+                    return false;
+                }
+                self.right.as_ref().unwrap().search(value)
+            }
+            Ordering::Greater => {
+                if self.left.is_none() {
+                    return false;
+                }
+                self.left.as_ref().unwrap().search(value)
+            }
+        }
     }
 }
 
