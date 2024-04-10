@@ -46,8 +46,8 @@
 - macro: vec![elements... ]
 ### vecs2.rs
 - two ways
-    - direct: use `*` 
-    - map: 
+  - direct: use `*`
+  - map:
 - used to do in the `*` way, now prefer the `map` way
 
 ## 3 move_semantics
@@ -60,7 +60,7 @@
 ### move_semantics6.rs
 - ownership
 
-## 4 struct 
+## 4 struct
 ### structs3.rs
 - `self`
 
@@ -76,9 +76,9 @@
 
     ```
 - match allows us to compare a value to a series of patterns and execute the code based on the matching pattern
-    - A pattern can consist of literal quantities, variables, wildcards, and many other things
-    - bind partial values of matching patterns
-- the return value of one branch is the return value of the whole match expection 
+  - A pattern can consist of literal quantities, variables, wildcards, and many other things
+  - bind partial values of matching patterns
+- the return value of one branch is the return value of the whole match expection
 
 ## 6 strings
 ### string1.rs
@@ -109,7 +109,7 @@
 - `entry()` and `or_insert()`
 ### hashmap3.rs
 - well, read the answer I wrote last time
-- have ideas, but stuck on &mut T 
+- have ideas, but stuck on &mut T
 
 ## quiz2.rs
 - stuck on modules and strings for a while
@@ -123,9 +123,9 @@
 - `if let` statement and `while let` statement
 - read the answer: think in the reverse way, .unwrap() -- Some()
 ### options3.rs
-- >Bind by reference during pattern matching. 
-  > ref annotates pattern bindings to make them borrow rather than move. 
-  > It is not a part of the pattern as far as matching is concerned: it does not affect whether a value is matched, 
+- >Bind by reference during pattern matching.
+  > ref annotates pattern bindings to make them borrow rather than move.
+  > It is not a part of the pattern as far as matching is concerned: it does not affect whether a value is matched,
   > only how it is matched.
 
 ## 10 error_handling
@@ -135,16 +135,16 @@
   - Err(E)
 ### error2.rs
 - ? -- match
-- >If the value of Result is OK, the expression will return the value in OK and the program will continue. 
-If the value is Err, Err is used as the return value for the entire function, 
-as if the return keyword were used, so that the error value is propagated to the caller.
+- >If the value of Result is OK, the expression will return the value in OK and the program will continue.
+  If the value is Err, Err is used as the return value for the entire function,
+  as if the return keyword were used, so that the error value is propagated to the caller.
 ### error3.rs
 - the ? is valid only in function that -> Result<T, E>
 - in main function, use `()` to present nothing needed
 ### error4.rs
 - kind of read the answer
 ### error5.rs
-- trait 
+- trait
 - Box\<T\>: A pointer type that uniquely owns a heap allocation of type T.
 - dyn
 ### error6.rs
@@ -153,14 +153,15 @@ as if the return keyword were used, so that the error value is propagated to the
 ## 11 generics
 ### generics2.rs
 - `<T>`
-    - functions: fn func_name<T>(arg: T) -> T
-    - structs: struct StructName<T>
-    - traits: trait TraitName<T>
-    - impl<T> StructName<T> { ... }
+  - functions: fn func_name<T>(arg: T) -> T
+  - structs: struct StructName<T>
+  - traits: trait TraitName<T>
+  - impl<T> StructName<T> { ... }
 
 ## 12 traits
 ### traits1.rs
-- trait: A trait defines a set of behaviors that can be shared, and once the train is implemented, you can use that set of behaviors.
+- trait: A trait defines a set of behaviors that can be shared, and once the train is implemented,
+- you can use that set of behaviors.
   - similar to interface
 - trait trait_name { ... }
   - impl trait_name for StructName { ... }
@@ -174,7 +175,8 @@ as if the return keyword were used, so that the error value is propagated to the
 
 ## 13 lifetimes
 ### lifetimes1.rs
-- lifetime: When returning a reference from a function,the lifetime parameter for the return type needs to match the lifetime parameter for one of the parameters
+- lifetime: When returning a reference from a function,the lifetime parameter for the return type needs
+- to match the lifetime parameter for one of the parameters
   - follow the compiler
   - 'a: fn funcName<'a>(x : 'a i32) -> &'a str
 ### lifetimes2.rs
@@ -183,7 +185,7 @@ as if the return keyword were used, so that the error value is propagated to the
   - make y live longer
   - make println! inner
 ### lifetimes3.rs
-- lifetime in struct: struct StructName<\'a> { field: \'a type1 } 
+- lifetime in struct: struct StructName<\'a> { field: \'a type1 }
 
 ## 14 tests
 ### tests1.rs
@@ -194,3 +196,120 @@ as if the return keyword were used, so that the error value is propagated to the
 ## 15 iterators
 ### iterators1.rs
 - iter(), next ()
+### iterators3.rs
+- `.map()`, `collect()`
+### iterator4.rs
+- `into_iter()` and `fold()`: e.g. iterator.fold(initial_value, |acc, x | { acc + x })
+- >The fold() method is similar to the iterator’s forEach() method, but it returns a value.
+- >Folds every element into an accumulator by applying an operation, returning the final result.
+
+  >fold() takes two arguments: an initial value, and a closure with two arguments: an ‘accumulator’, and an element.
+  > The closure returns the value that the accumulator should have for the next iteration.
+
+  >The initial value is the value the accumulator will have on the first call.
+
+  >After applying this closure to every element of the iterator, fold() returns the accumulator.
+
+  >This operation is sometimes called ‘reduce’ or ‘inject’.
+>
+### iterators5.rs
+- more familiar with the `iter()`, `map()` and `fold()`
+
+## 16 smart_pointers
+### box1.rs
+- compile time
+- `Box`: a smart pointer used to store data on the heap, which also allows us to wrap a recursive type.
+### rc1.rs
+- `Rc<T>`: used for multiple owners
+- `clone()`, `Rc::clone()`  and `drop()`
+### arc1.rs
+- Arc<T>: used for multiple owners, but it is thread-safe
+- `clone()`
+### cow1.rs
+- Cow(Copy-On-Write type): It can enclose and provide immutable access to borrowed data,<br>
+  and clone the data lazily when mutation or ownership is required.<br>
+  The type is designed to work with general borrowed data via the Borrow trait.
+- `Cow::Owned()` and `Cow::Borrowed()`
+- well, this is a little confusing, got stuck; solved by simulating the code above TODOs and the answer wrote before
+
+## 17 threads
+### threads1.rs
+- `thread::spawn()`: create a new thread and run the closure in it; -> JoinHandle<T>
+- `move`: move the value into the closure
+- `join()`: wait for the thread to finish, return the result
+### threads2.rs
+- `Mutex<T>`: A mutex is a mutual exclusion primitive that can be used to protect shared data<br>
+  - `lock()` : -> LockResult<MutexGuard<'_, T>>
+- `Arc<T>`:
+### threads3.rs
+- `std::sync::mpsc`: multi-producer, single-consumer channel, sending end and receiving end
+- `clone()`
+- well, I did get stuck on this one last time, this time go smoothly.
+
+## 18 macros
+The term `macro` refers to a family of features in Rust:
+- declarative macros with `macro_rules!` and
+- three kinds of `procedural` macros:
+  - Custom `#\[derive\]` macros that specify code added with the `derive` attribute used on structs and enums
+  - Attribute-like macros that define custom attributes usable on any item
+  - Function-like macros that look like function calls but operate on the tokens specified as their argument
+### macros2.rs
+- the order of definition and use matters
+### macros3.rs
+- `[macro_use]`
+### macros4.rs
+- use `;` to separate the macro arms
+
+## 19 clippy
+### clippy1.rs
+- `constant s`
+### clippy2.rs
+- `let Some(x) = option`
+### clippy3.rs
+- `std::mem::swap`, `vec.clear()`
+
+## 20 conversions
+### using_as.rs
+- `as` operator: type casting and renaming imports
+### from_into.rs
+- The From trait is used for value-to-value conversions. If From is implemented correctly for a type,<br>
+  the Into trait should work conversely.
+- copilot this time; I dit get stuck on this last time for a while, solved eventually
+- `impl From\<T\> for U`
+### from_str.rs
+- copilot this time; did get stuck on this last time for a while, solved eventually
+- `iterators`: `next()`, `last()`
+- `parse::\<T\>()`
+### try_from_into.rs
+- `TryFrom` and `TryInto` traits are provided by the standard library to support this conversion.
+  - `impl TryFrom\<From\> for To` and  `-> Result\<T, E\>`
+- `tuple` and `array` will be checked at compile time, `struct` will be checked at runtime,
+- `slice` implementation needs to check the slice length,
+### as_ref.rs
+- `trait bound`: `AsRef\<T\>` and `AsMut\<T\>`
+
+## 21 tests-II
+### tests5.rs
+- `unsafe`: `item declaration` and `code block`
+- The `unsafe` keyword has two uses:
+  - to declare the existence of contracts the compiler can’t check (unsafe fn and unsafe trait),
+  - and to declare that a programmer has checked that these contracts have been upheld (unsafe {} and unsafe impl, <br>
+    but also unsafe fn – see below).
+- confusing
+### tests6.rs
+- `Box`: `Box::into_raw()` and `Box::from_raw()`
+### tests7.rs || build.rs || tests8.rs
+- `build.rs`
+  - Building a bundled C library.
+  - Finding a C library on the host system.
+  - Generating a Rust module from a specification.
+  - Performing any platform-specific configuration needed for the crate.
+### test9.rs
+- ABI
+- extern 
+  - "C" for C-like ABI, "stdcall" for Windows ABI, "C++" for C++ ABI, <br>
+    "Rust" for Rust ABI, "system" for system ABI"
+  - #\[linkname = ".."\]
+  - export symbol to the linking environment, e.g. `extern "C" fn funcName()`
+- mangle symbol name: `#\[no_mangle\]
+- confused, copilot; the attributes should be applied properly

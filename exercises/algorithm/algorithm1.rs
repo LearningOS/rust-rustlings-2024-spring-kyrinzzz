@@ -71,7 +71,26 @@ impl<T> LinkedList<T> {
     }
 	pub fn merge(list_a:LinkedList<T>,list_b:LinkedList<T>) -> Self
 	{
-		//TODO
+        let list_a_ptr = list_a.start;
+        let list_b_ptr = list_b.start;
+        while list_a_ptr.is_some() && list_b_ptr.is_some() {
+            let a = list_a_ptr.unwrap();
+            let b = list_b_ptr.unwrap();
+            if a < b {
+
+                list_a_ptr = unsafe { (*a.as_ptr()).next };
+            } else {
+                list_b_ptr = unsafe { (*b.as_ptr()).next };
+            }
+        }
+        while list_a_ptr.is_some() {
+            let a = list_a_ptr.unwrap();
+            list_a_ptr = unsafe { (*a.as_ptr()).next };
+        }
+        while list_b_ptr.is_some() {
+            let b = list_b_ptr.unwrap();
+            list_b_ptr = unsafe { (*b.as_ptr()).next };
+        }
 		Self {
             length: 0,
             start: None,
