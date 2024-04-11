@@ -39,12 +39,24 @@ where
         //TODO
         self.count += 1;
         self.items.push(value);
-        self.heapify_up(self.count, self.comparator);
+        self.heapify_up(self.count);
     }
-    fn heapify_up(&mut self, mut idx: usize, comparator: fn(&T, &T) -> bool) {
-        while idx > 1 && comparator(&self.items[idx], &self.items[self.parent_idx(idx)]) {
-            self.items.swap(idx, self.parent_idx(idx));
+
+    fn heapify_up(&mut self, mut idx: usize) {
+        while idx > 1 && (self.comparator)(&self.items[idx], &self.items[self.parent_idx(idx)]) {
+            let parent_idx = self.parent_idx(idx);
+            self.items.swap(idx, parent_idx);
             idx = self.parent_idx(idx);
+        }
+    }
+    fn heapify_down(&mut self, mut idx: usize) {
+        while self.children_present(idx) {
+            let smallest_child_idx = self.smallest_child_idx(idx);
+            if (self.comparator)(&self.items[idx], &self.items[smallest_child_idx]) {
+                break;
+            }
+            self.items.swap(idx, smallest_child_idx);
+            idx = smallest_child_idx;
         }
     }
 
@@ -100,7 +112,18 @@ where
 
     fn next(&mut self) -> Option<T> {
         //TODO
-        None
+        if self.is_empty() {
+            return None
+        }
+        let min = self.items.swap_remove(1);
+        self.count -= 1;
+
+        if self.count > 1 {
+            self.items.swap(1, self.count);
+            self.heapify_down(1);
+        }
+        Some(min)
+
     }
 }
 
