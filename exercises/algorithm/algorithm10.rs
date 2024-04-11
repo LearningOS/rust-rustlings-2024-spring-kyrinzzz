@@ -44,13 +44,13 @@ pub trait Graph {
     fn adjacency_table_mutable(&mut self) -> &mut HashMap<String, Vec<(String, i32)>>;
     fn adjacency_table(&self) -> &HashMap<String, Vec<(String, i32)>>;
     fn add_node(&mut self, node: &str) -> bool {
-        //TODO
-		true
+        true
+
     }
     fn add_edge(&mut self, edge: (&str, &str, i32)) {
-        //TODO
+
     }
-    fn contains(&self, node: &str) -> bool {
+        fn contains(&self, node: &str) -> bool {
         self.adjacency_table().get(node).is_some()
     }
     fn nodes(&self) -> HashSet<&String> {

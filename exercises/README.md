@@ -265,6 +265,7 @@ The term `macro` refers to a family of features in Rust:
 - `constant s`
 ### clippy2.rs
 - `let Some(x) = option`
+- there was a bug, solved
 ### clippy3.rs
 - `std::mem::swap`, `vec.clear()`
 
